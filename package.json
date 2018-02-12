@@ -1,0 +1,25 @@
+{
+  "name": "socketio-reactchat",
+  "version": "1.0.0",
+  "description": "Practice with react components combined with socket.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unboundedimages/SocketIO-ReactChat.git"
+  },
+  "keywords": [
+    "socketio",
+    "react",
+    "chat",
+    "node"
+  ],
+  "author": "Rodney Ross aka rodrossdev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unboundedimages/SocketIO-ReactChat/issues"
+  },
+  "homepage": "https://github.com/unboundedimages/SocketIO-ReactChat#readme"
+}
