@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
 
+
 const socketUrl= "http://localhost:3231"
 export default class Layout extends Component {
 
