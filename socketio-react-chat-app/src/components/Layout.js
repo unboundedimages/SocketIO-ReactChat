@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client'
-import {USER_CONNECTED} from '../Events'
+import { USER_CONNECTED, LOGOUT } from '../Events'
 const socketUrl= "http://localhost:3231"
 export default class Layout extends Component {
 
