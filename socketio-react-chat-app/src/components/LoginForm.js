@@ -1,7 +1,20 @@
 import	React, { Component } from 'react';
 
-export class LoginForm extends Component {
+export default class LoginForm extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			nickname:"",
+			error:""
+		};
+	}
+
+
 	render(){
+
+		const { nickname, error } = this.state
+
 		return(
 			<div className="login">
 				<form onSubmit={this.handleSubmit} className="login-form">
@@ -20,6 +33,8 @@ export class LoginForm extends Component {
 						onChage={this.handleChange}
 						placeHolder={'Username'}
 					/>
+
+					<div className="error">{error ? error:null}</div>
 
 				</form>	
 
