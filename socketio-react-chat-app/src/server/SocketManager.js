@@ -4,7 +4,7 @@ const { VERIFY_USER, USER_CONNECTED, LOGOUT } = require('../Events')
 
 const { createUser, createMessage, createChat } = require('../Factories')
 
-const connectedUsers = {  }
+let connectedUsers = {  }
 
 module.exports = function(socket){
 	console.log("Socket Id: " + socket.id);
@@ -22,7 +22,8 @@ module.exports = function(socket){
 	socket.on(USER_CONNECTED, (user)=>{
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
-		
+
+		socket.emit(USER_CONNECTED, connectedUsers)
 		console.log(connectedUsers);	
 	})
 
@@ -32,7 +33,7 @@ module.exports = function(socket){
 
 
 function addUser(userList, user){
-	let newList = Object.assingn({}, userList)
+	let newList = Object.assign({}, userList)
 		newList[user.name] = user
 		return newList
 }
