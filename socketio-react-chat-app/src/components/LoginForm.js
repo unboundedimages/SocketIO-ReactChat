@@ -32,6 +32,10 @@ export default class LoginForm extends Component {
 
 	}
 
+	setError = (error)=>{
+		this.setState({error})
+	}
+
 	render(){
 
 		const { nickname, error } = this.state
