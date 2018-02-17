@@ -1,4 +1,5 @@
 import	React, { Component } from 'react';
+import  { VERIFY_USER } from '../Events'
 
 export default class LoginForm extends Component {
 	constructor(props) {
@@ -10,6 +11,18 @@ export default class LoginForm extends Component {
 		};
 	}
 
+	handleSubmit = (e)=>{
+		e.preventDefault()
+
+		const { socket } = this.props
+		const { nickname } = this.state
+		socket.emit(VERIFY_USER, nickname, this.setUser)
+	}	
+
+	handleChange = (e)=>{
+		this.setState({nickname:e.target.value})
+
+	}
 
 	render(){
 
@@ -17,6 +30,7 @@ export default class LoginForm extends Component {
 
 		return(
 			<div className="login">
+				
 				<form onSubmit={this.handleSubmit} className="login-form">
 
 					<label htmlFor="nickname">
@@ -30,8 +44,8 @@ export default class LoginForm extends Component {
 						type="text"
 						id="nickname"
 						value={nickname}
-						onChage={this.handleChange}
-						placeHolder={'Username'}
+						onChange={this.handleChange}
+						placeholder={'Username'}
 					/>
 
 					<div className="error">{error ? error:null}</div>
