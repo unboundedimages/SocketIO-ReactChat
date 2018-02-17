@@ -19,6 +19,13 @@ module.exports = function(socket){
 
 	})
 
+	socket.on(USER_CONNECTED, (user)=>{
+		connectedUsers = addUser(connectedUsers, user)
+		socket.user = user
+		
+		console.log(connectedUsers);	
+	})
+
 
 
 }
