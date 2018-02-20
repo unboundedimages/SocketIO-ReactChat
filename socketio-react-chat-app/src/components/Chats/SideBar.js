@@ -11,6 +11,11 @@ export default class SideBar extends Component {
 							<FAMenu />
 						</div>	
 					</div>
+					<div className="search">
+						<i className="search-icon"><FASearch /></i>
+						<input placeholder="Search"	type="text"/>
+						<div className="plus"></div>
+					</div>
 			</div>
 			);
 	}
