@@ -15,13 +15,14 @@ export default class ChatContainer extends Component {
 	}
 	render() {
 		const { user, logout } = this.props
+		const { chats, activeChat} = this.state
 		return (
 			<div className="container">
 					<SideBar
 						logout={logout}
-						chats={this.chats}
+						chats={chats}
 						user={user}
-						activeChat={this.activeChat}
+						activeChat={activeChat}
 						setActiveChat={this.setActiveChat}
 						/>	
 			</div>
