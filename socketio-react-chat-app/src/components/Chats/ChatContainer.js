@@ -10,6 +10,27 @@ export default class ChatContainer extends Component {
 		};
 	}
 
+	componentDidMount() {
+		const { socket } = this.props
+		socket.emit(COMMUNIT_CHAT, this.resetChat)
+
+	}
+
+	resetChat(chat){
+		return this.addChat(chat, true)
+	}
+
+	addChat(chat, reset){
+		const { socket } = this.props
+		const { chats } = this.state
+
+		const newChats = reset ? [chat]:[...chats, chat]
+		this.setState({chats:newChats})
+
+		const messageEvent = `${MESSAGE_RECEIVED}}-${chat-id}}`
+		const typingEvent = `${TYPING}-${chat-id}}`
+	}
+
 	sendMessage = (chatId, message)=>{
 		const { socket } = this.props
 		socket.emit(MESSAGE_SENT, {chatId, message} )
