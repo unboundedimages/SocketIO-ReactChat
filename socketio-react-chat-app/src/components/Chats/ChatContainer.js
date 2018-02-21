@@ -34,6 +34,13 @@ export default class ChatContainer extends Component {
 		socket.on(messageEvent)
 	}
 
+	addMessageToChat = (chatId)=>{}
+
+	
+	updateTypingInChat = (chatId)=>{}
+
+
+
 	sendMessage = (chatId, message)=>{
 		const { socket } = this.props
 		socket.emit(MESSAGE_SENT, {chatId, message} )
