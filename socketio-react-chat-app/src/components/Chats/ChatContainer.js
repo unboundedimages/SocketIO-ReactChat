@@ -9,7 +9,17 @@ export default class ChatContainer extends Component {
 			activeChat:null
 		};
 	}
-	
+
+	sendMessage = (chatId, message)=>{
+		const { socket } = this.props
+		socket.emit(MESSAGE_SENT, {chatId, message} )
+	}
+
+
+	sendTyping  = (chatId, isTyping)=>{
+		const { socket } = this.props
+		socket.emit(TYPING, {chatId, isTyping} )
+	}
 
 	setActiveChat = (activeChat)=>{
 		this.setState({activeChat})
