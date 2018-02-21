@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import FAChevronDown from 'react-icons/lib/md/keyboard-arrow-down'
 import FAMenu from 'react-icons/lib/fa/list-ul'
 import FASearch from 'react-icons/lib/fa/search'
-import MDEject	from 'react-icons/lib/md/eject'
+import MdEject	from 'react-icons/lib/md/eject'
 
 export default class SideBar extends Component {
+
 	render() {
 		const { chats, activeChat, user, setActiveChat, logout } = this.props
 		return (
@@ -38,12 +39,12 @@ export default class SideBar extends Component {
 								<div
 									key={chat.id}
 									className={`user ${classNames}`}
-									onClick={ ()=>{setActiveChat(caht) } }
+									onClick={ ()=>{setActiveChat(chat) } }
 									>
 									<div className="user-photo">{user.name[0].toUpperCase()}</div>
 									<div className="user-info">
 										<div className="name">{user.name}</div>
-										{lastMessage && <div className="last-message">{lastMessage message}</div>}
+										{lastMessage && <div className="last-message">{lastMessage.message}</div>}
 									</div>
 								</div>
 									)
@@ -56,7 +57,7 @@ export default class SideBar extends Component {
 					<div className="current-user">
 						<span>{user.name}</span>
 						<div onClick={()=>{logout()}} title="Logout" className="logout">
-							<MDEject/>
+							<MdEject/>
 						</div>	
 					</div>
 			</div>

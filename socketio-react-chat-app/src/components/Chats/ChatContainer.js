@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Sidebar from './Sidbar'
+import SideBar from './SideBar'
 export default class ChatContainer extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			chats:[],
 			activeChat:null
@@ -18,9 +19,9 @@ export default class ChatContainer extends Component {
 			<div className="container">
 					<SideBar
 						logout={logout}
-						chats={chats}
+						chats={this.chats}
 						user={user}
-						activeChat={activeChat}
+						activeChat={this.activeChat}
 						setActiveChat={this.setActiveChat}
 						/>	
 			</div>
