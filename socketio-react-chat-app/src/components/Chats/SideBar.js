@@ -53,6 +53,12 @@ export default class SideBar extends Component {
 						})	
 						}
 					</div>
+					<div className="current-user">
+						<span>{user.name}</span>
+						<div onClick={()=>{logout()}} title="Logout" className="logout">
+							<MDEject/>
+						</div>	
+					</div>
 			</div>
 			);
 	}
