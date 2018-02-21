@@ -9,6 +9,7 @@ export default class ChatContainer extends Component {
 			activeChat:null
 		};
 	}
+	
 
 	setActiveChat = (activeChat)=>{
 		this.setState({activeChat})
@@ -24,7 +25,37 @@ export default class ChatContainer extends Component {
 						user={user}
 						activeChat={activeChat}
 						setActiveChat={this.setActiveChat}
-						/>	
+						/>
+					<div class="chat-room-container">
+						{
+							activeChat !== null ? (
+
+								<div className="chat-room">
+									<ChatHeading name={activeChat.name}/>
+									<Messages
+										messages={activeChat.messages}
+										user={user}
+										typingUsers={activeChat.typingUsers}
+									/>
+									<MessageInput
+										sendMessage{
+											(message)=>{
+												this.sendMessage(activeChat.id, message)
+											}
+										}
+										sendTyping=>{
+											(isTyping)=>{
+												this.sendTyping(activeChat.id, isTyping)
+											}
+										}
+
+									/>
+
+								</div>
+
+							)
+						}
+					</div>		
 			</div>
 		);
 	}
