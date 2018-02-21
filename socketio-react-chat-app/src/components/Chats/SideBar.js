@@ -6,7 +6,7 @@ import MDEject	from 'react-icons/lib/md/eject'
 
 export default class SideBar extends Component {
 	render() {
-		const { chats, activeChats, user, setActiveChat, logout } = this.props
+		const { chats, activeChat, user, setActiveChat, logout } = this.props
 		return (
 			<div id="side-bar">
 					<div className="heading">
@@ -19,6 +19,39 @@ export default class SideBar extends Component {
 						<i className="search-icon"><FASearch /></i>
 						<input placeholder="Search"	type="text"/>
 						<div className="plus"></div>
+					</div>
+					<div
+						className="users"
+						ref='users'
+						onClick={(e)=>{ (e.target === this.refs.user) && setActiveChat(null) }}>
+
+						{
+						chats.map((chat)=>{
+							if(chat.name){
+								const lastMessage = chat.message[chat.messages.lenght -1];
+								const user = chat.users.find(({name})=>{
+									return name !== this.props.name
+								}) || { name:"Community" }
+								const classNames = (activeChat && activeChat.id === chat.id) ? 'active' : ''
+
+								return(
+								<div
+									key={chat.id}
+									className={`user ${classNames}`}
+									onClick={ ()=>{setActiveChat(caht) } }
+									>
+									<div className="user-photo">{user.name[0].toUpperCase()}</div>
+									<div className="user-info">
+										<div className="name">{user.name}</div>
+										{lastMessage && <div className="last-message">{lastMessage message}</div>}
+									</div>
+								</div>
+									)
+							}
+
+							return null
+						})	
+						}
 					</div>
 			</div>
 			);
