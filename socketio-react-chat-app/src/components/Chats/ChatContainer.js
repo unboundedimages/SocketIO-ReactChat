@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar'
+import { COMMUNIT_CHAT, MESSAGE_SENT, MESSAGE_RECEIVED, TYPING } from '../../Events'
+
 export default class ChatContainer extends Component {
 	constructor(props) {
 		super(props);
@@ -36,10 +38,10 @@ export default class ChatContainer extends Component {
 
 	addMessageToChat = (chatId)=>{
 		return message => {
-			const { chats } = this.this.state
+			const { chats } = this.state
 			let newChats = chats.map((chat)=>{
 				if(chat.id === chatID)
-					chat.messages.push(messageEvent)
+					chat.messages.push(message)
 				return chat
 			})
 
@@ -90,12 +92,12 @@ export default class ChatContainer extends Component {
 										typingUsers={activeChat.typingUsers}
 									/>
 									<MessageInput
-										sendMessage{
+										sendMessage={
 											(message)=>{
 												this.sendMessage(activeChat.id, message)
 											}
 										}
-										sendTyping=>{
+										sendTyping={
 											(isTyping)=>{
 												this.sendTyping(activeChat.id, isTyping)
 											}
@@ -105,7 +107,10 @@ export default class ChatContainer extends Component {
 
 								</div>
 
-							)
+							):
+							<div className="chat-room choose">
+								<h3>Choose a chat!</h3>
+							</div>	
 						}
 					</div>		
 			</div>
