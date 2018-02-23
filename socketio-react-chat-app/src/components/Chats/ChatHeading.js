@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ChatHeading extends Component {
-	render(){
+export default function({name}) {
+	
 		return (
-			<div>
-				Chat Heading
-			</div>	
+			<div className="chat-header"></div>
+				<div className="user-info">
+					<div className="user-name"></div>
+					<div className="status">
+						<div className="indicator"></div>
+						<span>{numberOfUsers ? numberOfUsers : null}</span>
+					</div>
+				</div>
 			);
-	}
+	
 }
