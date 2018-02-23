@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar'
 import { COMMUNIT_CHAT, MESSAGE_SENT, MESSAGE_RECEIVED, TYPING } from '../../Events'
+import ChatHeading from './ChatHeading'
+import Messages from '../messages/Messages'
+import MessageInput from '../messages/MessageInput'
+
 
 export default class ChatContainer extends Component {
 	constructor(props) {
