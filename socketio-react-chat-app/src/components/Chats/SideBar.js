@@ -29,26 +29,26 @@ export default class SideBar extends Component {
 						{
 						chats.map((chat)=>{
 							if(chat.name){
-								const lastMessage = chat.message[chat.messages.lenght -1];
+								const lastMessage = chat.messages[chat.messages.lenght -1];
 								const user = chat.users.find(({name})=>{
 									return name !== this.props.name
 								}) || { name:"Community" }
 								const classNames = (activeChat && activeChat.id === chat.id) ? 'active' : ''
 
 								return(
-								<div
-									key={chat.id}
-									className={`user ${classNames}`}
-									onClick={ ()=>{setActiveChat(chat) } }
-									>
-									<div className="user-photo">{user.name[0].toUpperCase()}</div>
-									<div className="user-info">
-										<div className="name">{user.name}</div>
-										{lastMessage && <div className="last-message">{lastMessage.message}</div>}
-									</div>
-								</div>
+										<div
+											key={chat.id}
+											className={`user ${classNames}`}
+											onClick={ ()=>{setActiveChat(chat) } }
+											>
+											<div className="user-photo">{user.name[0].toUpperCase()}</div>
+											<div className="user-info">
+												<div className="name">{user.name}</div>
+												{lastMessage && <div className="last-message">{lastMessage.message}</div>}
+											</div>
+										</div>
 									)
-							}
+								}
 
 							return null
 						})	

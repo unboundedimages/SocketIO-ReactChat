@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export default class MessageInput extends Component {
 	render() {
-		return(
+		return (
 			<div>MessageInput</div>
 			);
 	}
