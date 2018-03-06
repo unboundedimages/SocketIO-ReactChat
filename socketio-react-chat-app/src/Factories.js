@@ -7,7 +7,7 @@ const createUser = ({name = ""} = {})=>(
 )
 
 
-const createMessage = ({message = "", sender= ""} = {})=>(
+const createMessage = ({message = "", sender = ""} = {})=>(
 		{
 			id:uuidv4(),
 			time:getTime(new Date(Date.now())),
