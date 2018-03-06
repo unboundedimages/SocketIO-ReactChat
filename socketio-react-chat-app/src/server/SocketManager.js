@@ -13,19 +13,25 @@ let communityChat = createChat()
 module.exports = function(socket){
 	console.log("Socket Id: " + socket.id);
 
+	let sendMessageToChatFromUser;
+
+	let sendTypingFromUser;
+
+	
 	socket.on(VERIFY_USER, (nickname, callback)=>{
 		if(isUser(connectedUsers, nickname)){
 			callback({ isUser:true, user:null })
 		}else{
 			callback({isUser:false, user:createUser({name:nickname})})
 		}
-
-
 	})
 
 	socket.on(USER_CONNECTED, (user)=>{
 		connectedUsers = addUser(connectedUsers, user)
 		socket.user = user
+
+		sendMessageToChatFromUser = sendMessageToChat(user.name)
+		sendTypingFromUser = sendTypingToChat(user.name)
 
 		socket.emit(USER_CONNECTED, connectedUsers)
 		console.log(connectedUsers);	
