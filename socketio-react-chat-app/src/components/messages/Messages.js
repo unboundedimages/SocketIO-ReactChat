@@ -8,7 +8,7 @@ export default class Messages extends Component{
 				className="thread-container">
 				<div className="thread">
 					{
-						messages.map((mes, i)=>{
+						messages.map((mes)=>{
 							return (
 								<div
 									key={mes.id}
@@ -25,7 +25,13 @@ export default class Messages extends Component{
 						})
 					}
 					{
-						
+						typingUsers.map((name)=>{
+							return (
+								<div key={name} className="typing-user">
+									{`${name} is typing ...`}
+								</div>
+							)
+						})
 					}
 				</div>
 
