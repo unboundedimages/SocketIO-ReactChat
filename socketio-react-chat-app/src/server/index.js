@@ -1,4 +1,4 @@
-let app = require ('http').createServer()
+let app = require('http').createServer()
 let io = module.exports.io = require('socket.io')(app)
 
 const PORT = process.env.PORT || 3231
