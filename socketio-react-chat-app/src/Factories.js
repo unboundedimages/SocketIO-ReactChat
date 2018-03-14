@@ -50,16 +50,21 @@ const createMessage = ({message = "", sender = ""} = { })=>(
 *		users {Array.string}
 * 
 */
-const createChat = ({messages = [], name = "Crypto", users = []} = {})=>(
+const createChat = ({messages = [], name = "Let's talk CryptoAssets", users = [], isCommunity = false} = {})=>(
 	{
 		id:uuidv4(),
 		name,
 		messages,
 		users,
-		typingUsers:[]
+		typingUsers:[],
+		isCommunity
 	}
 )
 
+
+const createChatNameFromUsers = (users, excludedUser = "") => {
+	return users.filter(u => u !== excludedUser).join(' & ') || "Empty Chat"
+}
 
 /*
 *	@param date {Date}
@@ -72,5 +77,6 @@ const getTime = (date)=>{
 module.exports = {
 	createMessage,
 	createChat,
-	createUser
+	createUser,
+	createChatNameFromUsers
 }
