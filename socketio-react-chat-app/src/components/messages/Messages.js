@@ -36,6 +36,7 @@ export default class Messages extends Component {
 									<div className="name">{mes.sender}:</div>
 									<div className="data">
 										<div className="message">{mes.message}</div>
+										
 										<div className="time">{mes.time}</div>
 									</div>
 								</div>

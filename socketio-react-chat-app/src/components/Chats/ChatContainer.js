@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import SideBar from './SideBar'
-import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, TYPING } from '../../Events'
+import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, TYPING, PRIVATE_MESSAGE, USER_CONNECTED, NEW_CHAT_USER, USER_DISCONNECTED } from '../../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
 import MessageInput from '../messages/MessageInput'
+import {values, differenceBy, difference} from 'lodash'
 
 
 export default class ChatContainer extends Component {
@@ -12,13 +13,40 @@ export default class ChatContainer extends Component {
 
 		this.state = {
 			chats:[],
+			users:[],
 			activeChat:null
 		};
 	}
 
 	componentDidMount() {
 		const { socket } = this.props
+		// socket.emit(COMMUNITY_CHAT, this.resetChat)
+		this.initSocket(socket)
+	}
+
+	componentWillUnmount(){
+		const { socket } = this.props
+		socket.off(PRIVATE_MESSAGE)
+		socket.off(USER_DISCONNECTED)
+		socket.off(USER_CONNECTED)
+		socket.off(NEW_CHAT_USER)
+	}
+
+	initSocket(socket){
 		socket.emit(COMMUNITY_CHAT, this.resetChat)
+		socket.on(PRIVATE_MESSAGE, this.addChat)
+		socket.on('connect', ()=>{
+			socket.emit(COMMUNITY_CHAT, this.resetChat)
+		})
+		socket.on(USER_CONNECTED, (users)=>{
+			this.setState({ users:values(users) })
+		})
+		socket.on(USER_DISCONNECTED, (users)=>{
+			const removedUsers = differenceBy(this.state.users, values(users), 'id')
+			this.removeUsersFromChat(removedUsers)
+			this.setState({ users:values(users) })
+		})
+		socket.on(NEW_CHAT_USER, this.addUserToChat)
 	}
 
 	resetChat = (chat)=>{
