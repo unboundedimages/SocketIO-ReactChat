@@ -49,6 +49,30 @@ export default class ChatContainer extends Component {
 		socket.on(NEW_CHAT_USER, this.addUserToChat)
 	}
 
+	addUserToChat = ({chatId, newUser})=>{
+		const { chats } = this.state
+		const newChats = chats.map(chat => {
+				if(chat.id === chatId)
+					return Object.assign({}, chat, { users: [...chat.users,newUser] })
+				return chat
+		})
+		this.setState({ chats:newChats })
+	}
+
+	removeUsersFromChat = (removedUsers)=>{
+		const { chats } = this.state
+		const newChats = chats.map(chat => {
+			let newUsers = difference(chat.users, removedUsers.map(u=>u.name))
+			return Object.assign({}, chat , { users:newUsers })
+		})
+		this.setState({ chats:newChats })	
+	}
+	sendOpenPrivateMessage = (reciever) => {
+		const { socket, user } = this.props
+		const { activeChat } = this.state
+		socket.emit(PRIVATE_MESSAGE, {reciever, sender:user.name, activeChat})
+	}	
+
 	resetChat = (chat)=>{
 		return this.addChat(chat, true)
 	}
