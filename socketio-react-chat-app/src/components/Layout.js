@@ -20,11 +20,25 @@ export default class Layout extends Component {
 		this.initSocket()
 	}
 
+	// initSocket = ()=>{
+	// 	const socket = io(socketUrl)
+	// 	socket.on('connect', ()=>{
+	// 		console.log("Connected");
+	// 	})
+	// 	this.setState({socket})
+	// }
+
 	initSocket = ()=>{
 		const socket = io(socketUrl)
+
 		socket.on('connect', ()=>{
-			console.log("Connected");
+			if(this.state.user){
+				this.reconnect(socket)
+			}else{
+				console.log("connected")
+			}
 		})
+		
 		this.setState({socket})
 	}
 
