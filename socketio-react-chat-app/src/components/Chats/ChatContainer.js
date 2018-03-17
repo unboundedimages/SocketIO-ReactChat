@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SideBar from './SideBar'
+import SideBar from '../sidebar/SideBar'
 import { COMMUNITY_CHAT, MESSAGE_SENT, MESSAGE_RECIEVED, TYPING, PRIVATE_MESSAGE, USER_CONNECTED, NEW_CHAT_USER, USER_DISCONNECTED } from '../../Events'
 import ChatHeading from './ChatHeading'
 import Messages from '../messages/Messages'
@@ -137,19 +137,22 @@ export default class ChatContainer extends Component {
 	}
 
 	setActiveChat = (activeChat)=>{
+		if(activeChat !==this.state.activeChat)	
 		this.setState({activeChat})
 	}
 	render() {
 		const { user, logout } = this.props
-		const { chats, activeChat } = this.state
+		const { chats, activeChat, users } = this.state
 		return (
 			<div className="container">
 				<SideBar
 					logout={logout}
 					chats={chats}
 					user={user}
-					activeChat={activeChat}
+					users={users}
+					activeChat={this.activeChat}
 					setActiveChat={this.setActiveChat}
+					onSendPrivateMessage={this.sendOpenPrivateMessage}
 					/>
 				<div className="chat-room-container">
 					{
