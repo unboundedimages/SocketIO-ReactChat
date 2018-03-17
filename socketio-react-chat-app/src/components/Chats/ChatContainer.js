@@ -77,7 +77,7 @@ export default class ChatContainer extends Component {
 		return this.addChat(chat, true)
 	}
 
-	addChat = (chat, reset)=>{
+	addChat = (chat, reset = false)=>{
 		const { socket } = this.props
 		const { chats } = this.state
 
@@ -137,7 +137,7 @@ export default class ChatContainer extends Component {
 	}
 
 	setActiveChat = (activeChat)=>{
-		if(activeChat !==this.state.activeChat)	
+		// if(activeChat !==this.state.activeChat)	
 		this.setState({activeChat})
 	}
 	render() {
@@ -150,7 +150,8 @@ export default class ChatContainer extends Component {
 					chats={chats}
 					user={user}
 					users={users}
-					activeChat={this.activeChat}
+					// activeChat={this.activeChat}
+					activeChat={activeChat}
 					setActiveChat={this.setActiveChat}
 					onSendPrivateMessage={this.sendOpenPrivateMessage}
 					/>
@@ -180,7 +181,7 @@ export default class ChatContainer extends Component {
 							</div>
 
 						):
-						<div className="chat-room-choose">
+						<div className="chat-room choose">
 							<h3>Choose a chat!</h3>
 						</div>	
 					}
